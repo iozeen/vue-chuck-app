@@ -7,14 +7,17 @@
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       {{ error }}
     </div>
-    <ul>
-      <li v-for="joke in jokes">{{joke.value}}</li>
+    <ul v-for="joke in jokes">
+      <li>
+        <Joke :jokeItem="joke"/>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import Joke from './joke.vue';
 
   export default {
     data() {
@@ -24,6 +27,9 @@
         error: false,
         query: ''
       }
+    },
+    components: {
+      Joke
     },
     methods: {
       search: function () {
