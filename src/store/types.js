@@ -1,0 +1,9 @@
+export const LOAD_JOKES_LIST = 'LOAD_JOKES_LIST';
+export const LOAD_JOKE = 'LOAD_JOKE';
+export const RANDOM_JOKE = 'RANDOM_JOKE';
+export const SET_JOKES_LIST = 'SET_JOKES_LIST';
+export const SEARCH_JOKES_LIST = 'SEARCH_JOKES_LIST';
+export const EDIT_JOKE = 'EDIT_JOKE';
+export const ADD_JOKE = 'ADD_JOKE';
+export const ERROR = 'ERROR';
+export const NO_JOKES = 'NO_JOKES';

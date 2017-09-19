@@ -1,18 +1,35 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="item in projects">{{item}}</li>
-    </ul>
-  </div>
+  <ul class="joke-list">
+    <li v-for="joke in jokes">
+      <Joke :jokeItem="joke"/>
+        <!--<router-link :to="{ name: 'joke', params: { id: joke.id }}">-->
+          <!--Edit-->
+        <!--</router-link>-->
+    </li>
+  </ul>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import Joke from './joke.vue';
 
   export default {
     name: 'jokesList',
-    computed: mapState([
-      'projects'
-    ])
+    computed: {
+      jokes() {
+        return this.$store.getters.getJokes;
+      }
+    },
+    components: {
+      Joke
+    }
   }
 </script>
+
+<style>
+  .joke-list li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
