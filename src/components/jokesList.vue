@@ -1,12 +1,12 @@
 <template>
-  <ul class="joke-list">
-    <li v-for="joke in jokes">
-      <Joke :jokeItem="joke"/>
+    <ul class="joke-list">
+      <li v-for="joke in jokes" :key="joke.id">
+        <Joke :jokeItem="joke"/>
         <!--<router-link :to="{ name: 'joke', params: { id: joke.id }}">-->
-          <!--Edit-->
+        <!--Edit-->
         <!--</router-link>-->
-    </li>
-  </ul>
+      </li>
+    </ul>
 </template>
 
 <script>

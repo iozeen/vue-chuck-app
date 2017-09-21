@@ -5,15 +5,24 @@
         <img :src="joke.icon_url"/>
       </div>
       <div class="joke-content">
-        <div class="joke-category" v-if="!triggerCategory">{{joke.category[0]}}
-          <button @click="toggleCategory">Edit</button>
+        <div class="joke-category" v-if="!triggerCategory">
+          <span>{{joke.category[0]}}</span>
+          <div>
+            <a @click="toggleCategory" class="edit">
+              <icon name="pencil"></icon>
+            </a>
+          </div>
         </div>
         <div class="joke-category" v-if="triggerCategory">
           <input type="text" :value="joke.category[0]" @change="editCategory">
-          <button @click="toggleCategory">Edit</button>
+          <a @click="toggleCategory" class="edit">
+            <icon name="pencil"></icon>
+          </a>
         </div>
         <div class="joke-text" v-if="!triggerValue">{{joke.value}}
-          <button @click="toggleValue">Edit</button>
+          <a @click="toggleValue" class="edit">
+            <icon name="pencil"></icon>
+          </a>
         </div>
         <div class="joke-text" v-if="triggerValue">
           <textarea
@@ -23,7 +32,9 @@
             maxlength="400"
             id="text-area"
           >{{joke.value}}</textarea>
-          <button @click="toggleValue">Edit</button>
+          <a @click="toggleValue" class="edit">
+            <icon name="pencil"></icon>
+          </a>
         </div>
       </div>
     </div>
@@ -34,6 +45,7 @@
 <script>
   import * as types from '../store/types';
   import { mapState, mapActions } from 'vuex';
+  import * as Icon from 'vue-awesome';
 
   export default {
     name: 'editJoke',
@@ -86,6 +98,9 @@
         this.triggerValue = !this.triggerValue;
       }
     },
+    components: {
+      'icon': Icon
+    }
   }
 
 </script>
@@ -117,6 +132,7 @@
     color: #586069;
     font-weight: bold;
     background: #f6f8fa;
+    display: flex;
   }
 
   .joke-text {
@@ -134,7 +150,7 @@
     padding: 5px;
   }
 
-  #save-btn{
+  #save-btn {
     width: 50px;
     display: flex;
     justify-content: center;
@@ -148,8 +164,19 @@
     outline: none;
   }
 
-  #save-btn:hover{
+  #save-btn:hover {
     background: #7ecb20;
+  }
+
+  a {
+    cursor: pointer;
+    transition: all .2s;
+    padding: 5px;
+    margin: 0 10px;
+  }
+
+  a.edit:hover {
+    color: #00b0ff;
   }
 
 </style>

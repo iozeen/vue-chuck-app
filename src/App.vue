@@ -8,11 +8,12 @@
 <script>
   import Navigation from './components/navigation.vue';
   import * as types from './store/types';
+  import * as Icon from 'vue-awesome';
 
   export default {
     name: 'app',
     components: {
-      Navigation
+      Navigation,
     },
     mounted() {
       this.$store.dispatch(types.LOAD_JOKES_LIST);
