@@ -13,7 +13,8 @@ const store = new Vuex.Store({
     error: '',
     noJokes: false,
     loadedJoke: {},
-    randomJoke: {}
+    randomJoke: {},
+    newItems: 0
   },
   actions: {
     [types.RANDOM_JOKE]: function ({ commit }) {
@@ -59,7 +60,7 @@ const store = new Vuex.Store({
         commit(types.ERROR, err);
       });
     },
-    [types.DELETE_JOKE]: function({commit}, jokeId){
+    [types.DELETE_JOKE]: function ({ commit }, jokeId) {
       commit(types.DELETE_JOKE, jokeId);
     }
   },
@@ -81,8 +82,12 @@ const store = new Vuex.Store({
       state.noJokes = false;
     },
     [types.ADD_JOKE]: (state, joke) => {
+      if (state.jokes[0].id === joke.id) {
+        return;
+      }
       state.searchList.splice(state.searchList.indexOf(joke), 1);
       state.jokes.unshift(joke);
+      state.newItems++;
     },
     [types.EDIT_JOKE]: (state, newJoke) => {
       state.jokes = state.jokes.filter(item => {
@@ -101,7 +106,10 @@ const store = new Vuex.Store({
       state.error = '';
     },
     [types.DELETE_JOKE]: (state, jokeId) => {
-      state.jokes.splice(state.jokes.findIndex((item) => item.id === jokeId),1);
+      state.jokes.splice(state.jokes.findIndex((item) => item.id === jokeId), 1);
+    },
+    [types.CHANGE_NEW_JOKES_NUM]: (state, num) => {
+      state.newItems = num;
     }
   },
   getters: {
@@ -127,6 +135,9 @@ const store = new Vuex.Store({
     },
     randomJoke: (state) => {
       return state.randomJoke;
+    },
+    getNewItems: (state) => {
+      return state.newItems;
     }
   }
 });
