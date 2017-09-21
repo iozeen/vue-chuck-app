@@ -58,6 +58,9 @@ const store = new Vuex.Store({
       }, (err) => {
         commit(types.ERROR, err);
       });
+    },
+    [types.DELETE_JOKE]: function({commit}, jokeId){
+      commit(types.DELETE_JOKE, jokeId);
     }
   },
   mutations: {
@@ -97,6 +100,9 @@ const store = new Vuex.Store({
       state.noJokes = true;
       state.error = '';
     },
+    [types.DELETE_JOKE]: (state, jokeId) => {
+      state.jokes.splice(state.jokes.findIndex((item) => item.id === jokeId),1);
+    }
   },
   getters: {
     getJokes: state => {

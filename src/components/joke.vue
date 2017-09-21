@@ -12,6 +12,7 @@
         </router-link>
 
         <button @click="addJoke(jokeItem)" v-if="search">Add</button>
+        <button @click="deleteJoke(jokeItem.id)">Delete</button>
       </div>
       <div class="joke-text">{{jokeItem.value}} </div>
     </div>
@@ -28,6 +29,9 @@
     methods: {
       addJoke(joke) {
         return this.$store.commit(types.ADD_JOKE, joke);
+      },
+      deleteJoke(jokeId) {
+        return this.$store.commit(types.DELETE_JOKE, jokeId);
       }
     }
   }

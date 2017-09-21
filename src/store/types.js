@@ -1,5 +1,6 @@
 export const LOAD_JOKES_LIST = 'LOAD_JOKES_LIST';
 export const LOAD_JOKE = 'LOAD_JOKE';
+export const DELETE_JOKE = 'DELETE_JOKE';
 export const RANDOM_JOKE = 'RANDOM_JOKE';
 export const SET_JOKES_LIST = 'SET_JOKES_LIST';
 export const SEARCH_JOKES_LIST = 'SEARCH_JOKES_LIST';
